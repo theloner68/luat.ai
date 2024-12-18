@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lawyer.ai - Your Legal Assistant</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        #chat-box {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+        #user-input {
+            width: calc(100% - 80px);
+            padding: 8px;
+            margin-right: 5px;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lawyer.ai</h1>
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Type your legal question here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('user-input');
+            const chatBox = document.getElementById('chat-box');
+            const message = userInput.value;
+
+            if(message.trim() === '') return;
+
+            chatBox.innerHTML += '<p><strong>User:</strong> ' + message + '</p>';
+            chatBox.innerHTML += '<p><strong>Lawyer.ai:</strong> Your question is being processed...</p>';
+            userInput.value = '';
+            setTimeout(function() {
+                // Define responses for legal guidance
+                const responses = [
+                    "I'm here to assist with legal queries, but remember, I'm not a substitute for professional legal advice. Have you considered speaking to a licensed attorney?",
+                    "While I can provide general guidance, for specific legal issues, you should consult with a real lawyer to ensure compliance with current laws.",
+                    "I'm learning about legal intricacies every day, but for personalized advice, a consultation with a legal expert would be advisable.",
+                    "Keep in mind, while I strive to give accurate information, nothing beats the nuanced understanding of a practicing lawyer."
+                ];
+                const randomIndex = Math.floor(Math.random() * responses.length);
+                chatBox.innerHTML += `<p><strong>Lawyer.ai:</strong> ${responses[randomIndex]}</p>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 1500);
+        }
+
+        // Added Grok from xAI for more advanced legal query processing
+        function grokLegalQuery(query) {
+            // Here, you would integrate Grok or any AI model to process legal queries more intelligently
+            return "Grok is processing your query for a more detailed legal analysis.";
+        }
+    </script>
+</body>
+</html>
+
